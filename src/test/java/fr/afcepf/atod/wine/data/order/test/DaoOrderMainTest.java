@@ -22,8 +22,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *
  * @author ronan
  */
-public class testDaoOrder {
-    private static Logger log = Logger.getLogger(testDaoOrder.class);
+public class DaoOrderMainTest {
+    private static Logger log = Logger.getLogger(DaoOrderMainTest.class);
     public static void main(String[] args) {
         log.info("\t # Debut du test #");
         try {
@@ -40,7 +40,7 @@ public class testDaoOrder {
                }
            }
         } catch (WineException ex) {
-            java.util.logging.Logger.getLogger(testDaoOrder
+            java.util.logging.Logger.getLogger(DaoOrderMainTest
                     .class.getName()).log(Level.SEVERE, null, ex);
         }
         
