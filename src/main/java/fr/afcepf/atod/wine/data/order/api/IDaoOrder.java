@@ -6,27 +6,34 @@ import fr.afcepf.atod.wine.entity.Customer;
 import fr.afcepf.atod.wine.entity.Order;
 import java.util.List;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 /**
- *
+ * Services to access the database for an {@link Order}
  * @author ronan
  */
 public interface IDaoOrder extends IDaoGeneric<Order, Integer> {
 
+    /**
+     * Get all the orders for a customer
+     * @param customer {@link Customer}
+     * @return List of {@link Order}
+     * @throws WineException {@link WineException}
+     */
     List<Order> getAllOrdersByCustomer(Customer customer) throws WineException;
 
+    /**
+     * Get back the last order of a customer
+     * @param customer {@link Customer}
+     * @return {@link Order}
+     */
     Order getLastOrderByCustomer(Customer customer);
 
     /**
-     * recuperer les commande du customer
+     * Get back customer's orders
      *
-     * @param idCustumer
-     * @return
-     * @throws WineException
+     * @param idCustumer {@link Integer}
+     * @return {@link Customer}
+     * @throws WineException {@link WineException}
      */
     Customer ordersCustomerById(Integer idCustumer) throws WineException;
 

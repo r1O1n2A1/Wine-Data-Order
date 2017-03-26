@@ -13,28 +13,33 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class DaoOrder extends DaoGeneric<Order, Integer> implements IDaoOrder {
-
-    /**
-     * ***************************************************
-     * Requetes HQL **************************************************
-     */
+	 
+	/**
+	 * customer's id
+	 */
+	private static final String ID_CUSTOMER = "idCustomer";
+    
+	/**************************************************
+     * Requetes HQL
+     ***************************************************/
     private static final String REQ_LIST_CMD_BYID = "SELECT DISTINCT(c) FROM Customer c "
             + "left join fetch c.orders as o left join fetch o.ordersDetail "
             + "WHERE c.id = :idCustomer";
 
-    private static final String REQORDERSBYCUSTOMER = "SELECT o FROM Order o WHERE o.customer.id = :idCustomer ORDER BY o.paidAt DESC";
+    private static final String REQORDERSBYCUSTOMER = "SELECT o FROM Order o "
+    		+ "WHERE o.customer.id = :idCustomer "
+    		+ "ORDER BY o.paidAt DESC";
 
-    /**
-     * ***************************************************
-     * Fin Requetes HQL **************************************************
-     */
+    /*************************************************
+     * Fin Requetes HQL
+     *************************************************/
     @Override
     public Customer ordersCustomerById(Integer idCustomer) throws WineException {
         Customer customer = null;
         if (idCustomer != null) {
             customer = (Customer) getSf().getCurrentSession()
                     .createQuery(REQ_LIST_CMD_BYID)
-                    .setParameter("idCustomer", idCustomer)
+                    .setParameter(ID_CUSTOMER, idCustomer)
                     .uniqueResult();
             if (customer.getOrders().isEmpty()) {
                 throw new WineException(WineErrorCode.CA_NE_FONCTIONNE_PAS,
@@ -62,7 +67,7 @@ public class DaoOrder extends DaoGeneric<Order, Integer> implements IDaoOrder {
         @SuppressWarnings("unchecked")
         List<Order> orders = getSf().getCurrentSession()
                 .createQuery(REQORDERSBYCUSTOMER)
-                .setParameter("idCustomer", customer.getId())
+                .setParameter(ID_CUSTOMER, customer.getId())
                 .list();
         if (!orders.isEmpty()) {
             lastOrder = orders.get(0);
