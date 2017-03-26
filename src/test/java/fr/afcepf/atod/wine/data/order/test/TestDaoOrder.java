@@ -20,6 +20,6 @@ public class TestDaoOrder {
 	private static Logger logger = Logger.getLogger(TestDaoOrder.class);
 	@Autowired
 	private IDaoOrder daoOrder;
-	private Or
+	private Order nominal
 	
 }
