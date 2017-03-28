@@ -26,7 +26,7 @@ public interface IDaoOrder extends IDaoGeneric<Order, Integer> {
      * @param customer {@link Customer}
      * @return {@link Order}
      */
-    Order getLastOrderByCustomer(Customer customer);
+    Order getLastOrderByCustomer(Customer customer) throws WineException;
 
     /**
      * Get back customer's orders
