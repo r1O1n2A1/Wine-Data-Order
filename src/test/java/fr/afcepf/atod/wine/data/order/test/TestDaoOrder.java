@@ -68,12 +68,12 @@ public class TestDaoOrder {
 			Date dateOrderCreated = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2017-03-23 17:44:04");
 			Date dateOrderPaid = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2017-03-23 17:19:37");
 			nominal = new Customer(ID_EXPECTED,
-					"customer",
-					"customer", 
+					"Fen",
+					"Wang", 
 					dateCustomer, 
-					"fen@hotmail.com", 
-					"fen@hotmail.com", 
-					"test", 
+					"fenwang@hotmail.com", 
+					"fenwang@hotmail.com", 
+					"test1234", 
 					"0606080808", 
 					dateCustomer, 
 					dateCustomer, 
@@ -84,9 +84,9 @@ public class TestDaoOrder {
 					"customer",
 					"customer", 
 					dateCustomer, 
-					"fen@hotmail.com", 
-					"fen@hotmail.com", 
-					"test", 
+					"fenwang@hotmail.com", 
+					"fenwang@hotmail.com", 
+					"test1234", 
 					"0606080808", 
 					dateCustomer, 
 					dateCustomer, 
@@ -106,6 +106,7 @@ public class TestDaoOrder {
 	
 	@Test
 	public void testGetLastOrderNominal() throws WineException {
+		System.out.println(nominal.getId());
 		Order retour = daoOrder.getLastOrderByCustomer(nominal);
 		Assert.assertNotNull(retour);
 		Assert.assertEquals(retour.getCreatedAt().getTime(), expected.getCreatedAt().getTime());
