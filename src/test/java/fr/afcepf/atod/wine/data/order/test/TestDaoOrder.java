@@ -68,26 +68,26 @@ public class TestDaoOrder {
 			Date dateOrderCreated = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2017-03-23 17:44:04");
 			Date dateOrderPaid = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2017-03-23 17:19:37");
 			nominal = new Customer(ID_EXPECTED,
-					"Fen",
-					"Wang", 
+					"Wang",
+					"Fen", 
 					dateCustomer, 
 					"fenwang@hotmail.com", 
 					"fenwang@hotmail.com", 
 					"test1234", 
-					"0606080808", 
+					"0666666666", 
 					dateCustomer, 
 					dateCustomer, 
 					Civility.MISS, 
 					adress, 
 					true);
 			customerNull = new Customer(null,
-					"customer",
-					"customer", 
+					"Wang",
+					"Fen", 
 					dateCustomer, 
 					"fenwang@hotmail.com", 
 					"fenwang@hotmail.com", 
 					"test1234", 
-					"0606080808", 
+					"0666666666", 
 					dateCustomer, 
 					dateCustomer, 
 					Civility.MISS, 
@@ -109,7 +109,9 @@ public class TestDaoOrder {
 		System.out.println(nominal.getId());
 		Order retour = daoOrder.getLastOrderByCustomer(nominal);
 		Assert.assertNotNull(retour);
-		Assert.assertEquals(retour.getCreatedAt().getTime(), expected.getCreatedAt().getTime());
+		Assert.assertEquals(retour.getCustomer().getLogin(), expected.getCustomer().getLogin());
+		Assert.assertEquals(retour.getId(), expected.getId());
+		
 	}
 	
 	@Test
